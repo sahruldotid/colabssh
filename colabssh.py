@@ -102,21 +102,16 @@ def _setupSSHDImpl(ngrok_token, ngrok_region):
    
 
   msg = ""
-  msg += "ED25519 key fingerprint of host:\n"
   ret = subprocess.run(
                 ["ssh-keygen", "-lvf", "/etc/ssh/ssh_host_ed25519_key.pub"],
                 stdout = subprocess.PIPE,
                 check = True,
                 universal_newlines = True)
-  msg += ret.stdout + "\n"
 
   root_password = "colab"
   user_password = "colab"
   user_name = "colab"
-  msg += "✂️"*24 + "\n"
-  msg += f"root password: {root_password}\n"
-  msg += f"{user_name} password: {user_password}\n"
-  msg += "✂️"*24 + "\n"
+
   subprocess.run(["useradd", "-s", "/bin/bash", "-m", user_name])
   subprocess.run(["adduser", user_name, "sudo"], check = True)
   subprocess.run(["chpasswd"], input = f"root:{root_password}", universal_newlines = True)
