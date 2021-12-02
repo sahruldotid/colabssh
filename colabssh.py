@@ -131,9 +131,7 @@ def _setupSSHDImpl(ngrok_token, ngrok_region):
 
   msg += "---\n"
   msg += "Command to connect to the ssh server:\n"
-  msg += "✂️"*24 + "\n"
   msg += f"ssh {ssh_common_options} {user_name}@{hostname}\n"
-  msg += "✂️"*24 + "\n"
   return msg
 
 def _setupSSHDMain(ngrok_region, ngrok_token):
